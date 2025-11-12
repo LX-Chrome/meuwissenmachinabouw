@@ -2,7 +2,6 @@
 import {PrismaClient} from '@prisma/client'
 
 const prisma = new PrismaClient()
-const hasDb = !!process.env.DATABASE_URL
 
 type poiDataType = {
     positionX: number
@@ -13,17 +12,14 @@ type poiDataType = {
 }
 
 export const getPois = async () => {
-    if (!hasDb) return []
     return prisma.pOI.findMany()
 }
 
 export const getPois2 = async () => {
-    if (!hasDb) return []
     return prisma.pOI2.findMany()
 }
 
 export const getSecret = async () => {
-    if (!hasDb) return []
     return prisma.secret.findMany()
 }
 
@@ -36,8 +32,6 @@ export const updateSingleSecret = async (id: number | undefined, data: {text: st
         return {error: 'No content provided'}
     }
 
-    if (!hasDb) return {error: 'Database not configured'}
-
     return prisma.secret.update({
         where: {id},
         data,
@@ -45,7 +39,6 @@ export const updateSingleSecret = async (id: number | undefined, data: {text: st
 }
 
 export const getReferee = async () => {
-    if (!hasDb) return []
     return prisma.referee.findMany()
 }
 
@@ -58,8 +51,6 @@ export const updateSingleReferee = async (id: number | undefined, data: {text: s
         return {error: 'No content provided'}
     }
 
-    if (!hasDb) return {error: 'Database not configured'}
-
     return prisma.referee.update({
         where: {id},
         data,
@@ -70,8 +61,6 @@ export const updateSinglePoi = async (id: number, data: poiDataType | undefined,
     if (!data) {
         return {error: 'No data provided'}
     }
-
-    if (!hasDb) return {error: 'Database not configured'}
 
     if(type === 'poi') {
         return prisma.pOI.update({
@@ -89,7 +78,6 @@ export const updateSinglePoi = async (id: number, data: poiDataType | undefined,
 }
 
 export const getDynamicData = async () => {
-    if (!hasDb) return []
     return prisma.dynamicText.findMany()
 }
 
@@ -101,8 +89,6 @@ export const updateDynamicData = async (id: number | undefined, data: {content: 
     if (!data.content) {
         return {error: 'No content provided'}
     }
-
-    if (!hasDb) return {error: 'Database not configured'}
 
     return prisma.dynamicText.update({
         where: {id},

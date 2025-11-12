@@ -32,21 +32,21 @@ const POI2 = ({loggedIn, positionX, positionY, imageSrc, header, text, extraImag
 
     return (
         <div
-            className={`h-[8.5vh] w-[4.5vw] absolute rounded-xl hover:cursor-pointer`}
+            className={`h-[8.5vh] w-[4.5vw] absolute rounded-xl hover:cursor-pointer hover:z-[5]`}
             style={{top: `${positionY}%`, left: `${positionX}%`}}>
 
             {loggedIn || (header !== "" || text !== "") ? (
                 <HoverCard>
                     <HoverCardTrigger>
                         <div
-                            className={'h-[16px] w-[16px] rotate-45 rounded-[10px] absolute -bottom-1.5 left-1/2 -translate-x-1/2'}/>
+                            className={'h-[16px] w-[16px] rotate-45 rounded-[10px] absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-yellow-400 shadow-md'}/>
                         <div className={'w-full h-full flex items-center justify-center select-none'}>
                             <Image src={imageSrc} alt={'POI hover image'} fill={true}
-                                   className={'object-fill rounded-[10px] z-[0] relative hover:scale-[2] transition-all duration-300'}/>
+                                   className={'object-cover rounded-[10px] z-[0] relative shadow-lg ring-1 ring-black/10 transition-transform duration-300 hover:scale-110'}/>
                         </div>
                     </HoverCardTrigger>
 
-                    <HoverCardContent className={`mt-1 bg-yellow-400 border-yellow-300 ${loggedIn && 'space-y-10'}`}>
+                    <HoverCardContent className={`mt-1 bg-yellow-400 border-yellow-300 ${loggedIn && 'space-y-10'} shadow-xl rounded-md`}>
                         <h2 className={'text-xl font-semibold'}>{header}</h2>
                         <div className={'text-sm'}>
                             {text}
@@ -68,7 +68,7 @@ const POI2 = ({loggedIn, positionX, positionY, imageSrc, header, text, extraImag
                                         <Image src={extraImageSrc}
                                                alt={'POI hover image'}
                                                width={2339} height={1653}
-                                               className={'hover:scale-[2] rounded-md'}/>
+                                               className={'hover:scale-150 rounded-md'}/>
                                     </div>
                                 </HoverCardContent>
                             </HoverCard>
@@ -77,11 +77,12 @@ const POI2 = ({loggedIn, positionX, positionY, imageSrc, header, text, extraImag
                 </HoverCard>) : (
                 <>
                     <div
-                        className={'h-[16px] w-[16px] rotate-45 rounded-[10px] absolute -bottom-1.5 left-1/2 -translate-x-1/2'}/>
+                        className={'h-[16px] w-[16px] rotate-45 rounded-[10px] absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-yellow-400 shadow-md'}/>
                     <div className={'w-full h-full flex items-center justify-center select-none'}>
                         <Image src={imageSrc} alt={'POI hover image'} fill={true}
-                               className={'object-fill rounded-[10px] z-[0] relative hover:scale-[2] transition-all duration-300'}/>
+                               className={'object-cover rounded-[10px] z-[0] relative shadow-lg ring-1 ring-black/10 transition-transform duration-300 hover:scale-110'}/>
                     </div>
+
                 </>
             )}
         </div>

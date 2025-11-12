@@ -28,7 +28,7 @@ const ImageSlider = ({images}: { images: string[] }) => {
                         key={index}
                         src={image}
                         alt={`Slide ${index + 1}`}
-                        className="flex-shrink-0 h-[4.2vh]"
+                        className="flex-shrink-0 h-[4.2vh] object-contain mx-3 opacity-90 hover:opacity-100 transition-opacity duration-300 rounded"
                     />
                 ))}
             </div>
